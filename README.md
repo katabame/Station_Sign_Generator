@@ -5,14 +5,14 @@ for nephy svr users
 ### Usages
 Endpoint: /index.php
 
-**Args**
-cs: currentStation
-css: currentStationSubtitle
-ns: nextStation
-nss: nextStationSubtitle
-ps: prevStation
-pss: prevStationSubtitle
-in: isNext (default: true)
+**Args**  
+cs: currentStation  
+css: currentStationSubtitle  
+ns: nextStation  
+nss: nextStationSubtitle  
+ps: prevStation  
+pss: prevStationSubtitle  
+in: isNext (default: true)  
 
-**e.g.**
-`/index.php?cs=ÇŸÇ∞&css=hoge&ns=Ç“ÇÊ&nss=piyo&ps=Ç”Ç™&pss=huga&in=false`
+**e.g.**  
+`/index.php?cs=„Åª„Åí&css=hoge&ns=„Å¥„Çà&nss=piyo&ps=„Åµ„Åå&pss=huga&in=false`
