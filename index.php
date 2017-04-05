@@ -1,14 +1,14 @@
 <?php
 header("Content-type: image/png");
 
-$currentStation = isset($_GET["cs"])? $_GET["cs"] : "";
-$currentStationSubtitle = isset($_GET["css"])? $_GET["css"] : "";
+$currentStation = isset($_GET["cs"])? urldecode($_GET["cs"]) : "";
+$currentStationSubtitle = isset($_GET["css"])? urldecode($_GET["css"]) : "";
 
-$nextStation = isset($_GET["ns"])? $_GET["ns"] : "";
-$nextStationSubtitle = isset($_GET["nss"])? $_GET["nss"] : "";
+$nextStation = isset($_GET["ns"])? urldecode($_GET["ns"]) : "";
+$nextStationSubtitle = isset($_GET["nss"])? urldecode($_GET["nss"]) : "";
 
-$prevStation = isset($_GET["ps"])? $_GET["ps"] : "";
-$prevStationSubtitle = isset($_GET["pss"])? $_GET["pss"] : "";
+$prevStation = isset($_GET["ps"])? urldecode($_GET["ps"]) : "";
+$prevStationSubtitle = isset($_GET["pss"])? urldecode($_GET["pss"]) : "";
 
 $isNext = true;
 if(isset($_GET["in"]))
