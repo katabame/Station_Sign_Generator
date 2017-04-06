@@ -1,10 +1,7 @@
 <?php
-header("Content-Type: image/png");
-
-function get($input, $default = null) {
-
+function get($input, $default = null)
+{
 	if (empty($input))
-
 		return $default;
 
 	return $input;
@@ -20,7 +17,14 @@ $nextStationSubtitle = urldecode(get($_GET["nss"]));
 $prevStation = urldecode(get($_GET["ps"]));
 $prevStationSubtitle = urldecode(get($_GET["pss"]));
 
-$isNext = isset($_GET["in"]);
+$isPrev = isset($_GET["ip"]);
+
+$hex = get($_GET["hex"], "f5f5f5");
+$hex = preg_replace("/#/", "", $hex);
+
+$r = hexdec(substr($hex, 0, 2));
+$g = hexdec(substr($hex, 2, 2));
+$b = hexdec(substr($hex, 4, 2));
 
 $img = imagecreate(1500, 600);
 $bg = ImageColorAllocate($img, 0x21, 0x21, 0x21);
@@ -55,11 +59,27 @@ $x = ceil(75);
 ImageTTFText($img, 30, 0, $x, 550, $font_color, $font, $prevStationSubtitle);
 
 // nav bar
-$bar = imagecreatefrompng($isNext ? "next.png" : "prev.png");
+if($isPrev)
+{
+	$vertex = array(
+		76, 410,
+		1425, 410,
+		1425, 350,
+		194, 350
+	);
+}
+else
+{
+	$vertex = array(
+		76, 410,
+		1425, 410,
+		1307, 350,
+		76, 350
+	);
+}
+$barcolor = imagecolorallocate($img, $r, $g, $b);
+imagefilledpolygon($img, $vertex, 4, $barcolor);
 
-$bar_width = imagesx($bar);
-$bar_height = imagesy($bar);
-imagecopy($img, $bar, 75, 350, 0, 0, $bar_width, $bar_height);
-
+header("Content-Type: image/png");
 Imagepng($img);
 ImageDestroy($img);
